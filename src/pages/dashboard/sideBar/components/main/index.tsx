@@ -2,8 +2,9 @@
 import 'uplot/dist/uPlot.min.css';
 import styled from "styled-components";
 import { useTheme } from '@mui/material/styles';
-import BasicChart from "../../../../../components/spinners/charts/BasicChart";
+
 import { useEffect } from 'react';
+import BasicChart from '../../../../../components/charts/BasicChart';
 
 const drawerWidth = 240;
 
@@ -52,7 +53,7 @@ export default function MainContent({ open, setOpen }: Props) {
   return (
     <Main open={open} theme={theme}>
       <DrawerHeader theme={theme} />
-      <div style={{width:'800px', height:'400px', display:'flex', justifyContent:'center', alignItems:'center'}}>
+      {/* <div style={{width:'800px', height:'400px', display:'flex', justifyContent:'center', alignItems:'center'}}> */}
       <BasicChart 
        
        title={'Ejemplo'}
@@ -80,7 +81,7 @@ export default function MainContent({ open, setOpen }: Props) {
     
      
     />
-      </div>
+      {/* </div> */}
      
     </Main>
   );

@@ -3,12 +3,15 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useMainContext } from '../../../../../../../contexts/contextHooks/useMainContext';
+import { yearsList } from './data';
 
 export default function YearSelector() {
-  const [age, setAge] = React.useState('');
+
+  const {year, setYear} = useMainContext()
 
   const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+    setYear(parseInt(event.target.value));
   };
 
   return (
@@ -17,11 +20,16 @@ export default function YearSelector() {
       <Select
         labelId="demo-select-small-label"
         id="demo-select-small"
-        value={age}
+        value={year.toString()}
         label="Age"
         onChange={handleChange}
-      >
-        <MenuItem value={2024}>2024</MenuItem>
+      > 
+      {
+        yearsList.map((el, index)=>{
+          return  <MenuItem key={index} value={el}>{el}</MenuItem>
+        })
+      }
+       
       </Select>
     </FormControl>
   );

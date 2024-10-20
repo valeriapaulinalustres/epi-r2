@@ -6,6 +6,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import MonthSelector from './components/monthSelector';
 import YearSelector from './components/yearSelector';
+import { useMainContext } from '../../../../../contexts/contextHooks/useMainContext';
 
 interface Props {
   open: boolean;
@@ -43,6 +44,8 @@ const AppBar = styled(MuiAppBar, {
 export default function Header({ open, setOpen }: Props) {
   const theme = useTheme();
 
+  const {healthCenter} = useMainContext()
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -64,11 +67,12 @@ export default function Header({ open, setOpen }: Props) {
         >
           <MenuIcon />
         </IconButton>
-        {/* <Typography variant="h6" noWrap component="div">
-          Persistent drawer
-        </Typography> */}
+     
         <MonthSelector />
         <YearSelector />
+           <Typography variant="h6" noWrap component="div">
+        {healthCenter}
+        </Typography>
       </Toolbar>
     </AppBar>
   );

@@ -6,6 +6,8 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
+import { useMainContext } from '../../../../../../../contexts/contextHooks/useMainContext';
+import { monthList } from './data';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,34 +20,23 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'Enero',
-  'Febrero',
-  'Marzo',
-  'Abril',
-  'Mayo',
-  'Junio',
-  'Julio',
-  'Agosto',
-  'Septiembre',
-  'Octubre',
-  'Noviembre',
-  'Diciembre'
-];
+
 
 export default function MonthSelector() {
-  const [personName, setPersonName] = React.useState<string[]>([]);
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+const {months, setMonths} = useMainContext()
+
+
+  const handleChange = (event: SelectChangeEvent<typeof months>) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
+    setMonths(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
   };
-
+console.log('months', months)
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }} size='small'>
@@ -54,15 +45,15 @@ export default function MonthSelector() {
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
           multiple
-          value={personName}
+          value={months}
           onChange={handleChange}
           input={<OutlinedInput label="Tag" />}
           renderValue={(selected) => selected.join(', ')}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              <Checkbox checked={personName.includes(name)} />
+          {monthList.map((name, index) => (
+            <MenuItem key={index} value={name}>
+              <Checkbox checked={months.includes(name)} />
               <ListItemText primary={name} />
             </MenuItem>
           ))}

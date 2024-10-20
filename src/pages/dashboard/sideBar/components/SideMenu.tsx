@@ -17,7 +17,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
-import { caps } from '../data';
+import { caps } from './data';
+import { useMainContext } from '../../../../contexts/contextHooks/useMainContext';
 
 
 const drawerWidth = 240;
@@ -41,9 +42,15 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function SideMenu ({open, setOpen}:Props) {
     const theme= useTheme()
 
+    const {healthCenter, setHealthCenter} = useMainContext()
+
     const handleDrawerClose = () => {
         setOpen(false);
       };
+
+      function handleChooseHealthCenter (name: string) {
+        setHealthCenter(name)
+      }
 
     return (
         <Drawer
@@ -70,26 +77,26 @@ export default function SideMenu ({open, setOpen}:Props) {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Hospital de Morón'].map((text, index) => (
-            <ListItem key={index} disablePadding dense>
+          {[{id:1,name:'Hospital de Morón'}].map((el, index) => (
+            <ListItem key={index} disablePadding dense onClick={()=>handleChooseHealthCenter(el.name)}>
               <ListItemButton dense>
                 <ListItemIcon>
                   <LocalHospitalIcon sx={{color: '#FF7999'}} />
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={el.name} />
               </ListItemButton>
             </ListItem>
           ))}
         </List>
         <Divider />
         <List>
-          {caps.map((text, index) => (
-            <ListItem key={index} disablePadding dense>
+          {caps.map((el, index) => (
+            <ListItem key={index} disablePadding dense onClick={()=>handleChooseHealthCenter(el.name)}>
               <ListItemButton dense>
                 <ListItemIcon>
                  <LocalHospitalIcon sx={{color: '#FF7999'}}/>
                 </ListItemIcon>
-                <ListItemText primary={text.name} />
+                <ListItemText primary={el.name} />
               </ListItemButton>
             </ListItem>
           ))}
