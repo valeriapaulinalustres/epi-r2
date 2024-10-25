@@ -51,7 +51,7 @@ export default function Header({ open, setOpen }: Props) {
   };
 
   return (
-    <AppBar position="fixed" open={open} style={{ marginTop: '75px', backgroundColor: 'white', color: 'blue' }}>
+    <AppBar position="fixed" open={open} style={{ marginTop: '69px', backgroundColor: 'white', color: 'blue' }}>
       <Toolbar>
         <IconButton
           color="inherit"
@@ -61,6 +61,7 @@ export default function Header({ open, setOpen }: Props) {
           sx={[
             {
               mr: 2,
+              color:'#FF7999'
             },
             open && { display: 'none' },
           ]}
@@ -70,7 +71,7 @@ export default function Header({ open, setOpen }: Props) {
      
         <MonthSelector />
         <YearSelector />
-           <Typography variant="h6" noWrap component="div">
+           <Typography variant="h6" noWrap component="div" sx={{color:'#FF7999'}}>
         {healthCenter}
         </Typography>
       </Toolbar>

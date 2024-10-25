@@ -131,7 +131,7 @@ function BasicChart({
   }, []);
 
   return (
-    <div className='chart-container'>
+    <div className='chart-container' style={{width:'900px', margin:'10px'}}>
       <Bar options={options} data={data} ref={refChartFiveData} />
       <button
         type='button'

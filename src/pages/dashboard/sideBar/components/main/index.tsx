@@ -51,7 +51,7 @@ export default function MainContent({ open, setOpen }: Props) {
   const verde = 'rgba(0, 255, 102, 1)';
   const verdeTransparente = 'rgba(0, 255, 102, 0.2)';
   return (
-    <Main open={open} theme={theme}>
+    <Main open={open} theme={theme} style={{marginTop:'100px', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
       <DrawerHeader theme={theme} />
       {/* <div style={{width:'800px', height:'400px', display:'flex', justifyContent:'center', alignItems:'center'}}> */}
       <BasicChart 

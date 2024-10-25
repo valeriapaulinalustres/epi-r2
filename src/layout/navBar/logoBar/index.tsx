@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import theme from '../../../theme';
 import { useNavigate } from 'react-router-dom';
+import LogoEpi from '../../../assets/logoEpi.png'
 
 const pages = [{
   name: 'Gráficos',
@@ -23,7 +24,7 @@ const pages = [{
   name: 'Cargar',
   url: '/upload'
 }];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Perfil','Cerrar sesión'];
 
 function LogoBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -48,10 +49,11 @@ function LogoBar() {
   };
 
   return (
-    <AppBar position="static" sx={{backgroundColor:'white'}}>
+    <AppBar position="static" sx={{backgroundColor:'#ff003c', position:'fixed'}}>
       <Container maxWidth="xl" >
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+        <Toolbar disableGutters >
+          <img src={LogoEpi} alt="Logo" height={50}/>
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -62,12 +64,12 @@ function LogoBar() {
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: '#FF003C',
+              letterSpacing: '.1rem',
+              color: 'white',
               textDecoration: 'none',
             }}
           >
-            EPI R2
+            R2
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -128,16 +130,16 @@ function LogoBar() {
               <Button
                 key={page.name}
                 onClick={()=>handleCloseNavMenu(page.url)}
-                sx={{ my: 2, color: 'grey', display: 'block' }}
+                sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.name}
               </Button>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Perfil">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Vemy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
