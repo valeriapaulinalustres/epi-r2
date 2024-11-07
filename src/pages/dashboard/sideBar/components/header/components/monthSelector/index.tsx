@@ -1,13 +1,13 @@
-import * as React from 'react';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import ListItemText from '@mui/material/ListItemText';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import Checkbox from '@mui/material/Checkbox';
-import { useMainContext } from '../../../../../../../contexts/contextHooks/useMainContext';
-import { monthList } from './data';
+import * as React from "react";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import ListItemText from "@mui/material/ListItemText";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Checkbox from "@mui/material/Checkbox";
+import { useMainContext } from "../../../../../../../contexts/contextHooks/useMainContext";
+import { monthList } from "./data";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -20,26 +20,19 @@ const MenuProps = {
   },
 };
 
-
-
 export default function MonthSelector() {
-
-const {months, setMonths} = useMainContext()
-
+  const { months, setMonths } = useMainContext();
 
   const handleChange = (event: SelectChangeEvent<typeof months>) => {
     const {
       target: { value },
     } = event;
-    setMonths(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    setMonths(typeof value === "string" ? value.split(",") : value);
   };
-console.log('months', months)
+  console.log("months", months);
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300 }} size='small'>
+      <FormControl sx={{ m: 1, width: 300 }} size="small">
         <InputLabel id="demo-multiple-checkbox-label">Mes</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
@@ -48,7 +41,7 @@ console.log('months', months)
           value={months}
           onChange={handleChange}
           input={<OutlinedInput label="Tag" />}
-          renderValue={(selected) => selected.join(', ')}
+          renderValue={(selected) => selected.join(", ")}
           MenuProps={MenuProps}
         >
           {monthList.map((name, index) => (

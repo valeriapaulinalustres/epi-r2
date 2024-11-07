@@ -4,12 +4,15 @@ import { isAtLeastSixCharacters, isValidEmail } from "./utils/validations";
 import { Container, Error, Example, LoginCard, LogoContainer } from "./styles";
 import Button from "../../components/button/Button";
 import LogoEpi from "../../assets/logoEpi.png";
+import { useLogin } from "./hooks/useLogin";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMail, setErrorMail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
+
+  const {status, errorToShow, login} = useLogin({email, password}) 
 
   const resultLogin = {
     isSuccess: true,
@@ -63,6 +66,7 @@ const Login = () => {
     // } catch (error) {
     //   console.log("error", error);
     // }
+    login({email:'va@gmail.com', password:'1234'})
     navigate("/dashboard");
   };
 

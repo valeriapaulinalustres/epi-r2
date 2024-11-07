@@ -7,6 +7,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "./theme";
 import { MainContextProvider } from "./contexts/MainContext";
+import { LoginContextProvider } from "./contexts/LoginContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,9 +17,11 @@ root.render(
     <ThemeProvider theme={theme}>
       <CssBaseline />{" "}
       {/* Esto resetea estilos globales, como el fondo y el padding */}
-      <MainContextProvider>
-        <App />
-      </MainContextProvider>
+      <LoginContextProvider>
+        <MainContextProvider>
+          <App />
+        </MainContextProvider>
+      </LoginContextProvider>
       ,
     </ThemeProvider>
   </React.StrictMode>

@@ -1,14 +1,13 @@
-import * as React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { useMainContext } from '../../../../../../../contexts/contextHooks/useMainContext';
-import { yearsList } from './data';
+import * as React from "react";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useMainContext } from "../../../../../../../contexts/contextHooks/useMainContext";
+import { yearsList } from "./data";
 
 export default function YearSelector() {
-
-  const {year, setYear} = useMainContext()
+  const { year, setYear } = useMainContext();
 
   const handleChange = (event: SelectChangeEvent) => {
     setYear(parseInt(event.target.value));
@@ -23,13 +22,14 @@ export default function YearSelector() {
         value={year.toString()}
         label="Age"
         onChange={handleChange}
-      > 
-      {
-        yearsList.map((el, index)=>{
-          return  <MenuItem key={index} value={el}>{el}</MenuItem>
-        })
-      }
-       
+      >
+        {yearsList.map((el, index) => {
+          return (
+            <MenuItem key={index} value={el}>
+              {el}
+            </MenuItem>
+          );
+        })}
       </Select>
     </FormControl>
   );
