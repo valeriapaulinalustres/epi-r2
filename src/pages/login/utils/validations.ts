@@ -4,6 +4,6 @@ export const isValidEmail = (emailInput: string): boolean => {
 }
 
 export const isAtLeastSixCharacters = (input: string): boolean => {
-    const regex = /.{6,}/;
+    const regex = /.{4,}/;
     return regex.test(input);
 }

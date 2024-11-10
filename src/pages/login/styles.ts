@@ -13,9 +13,10 @@ padding: 40px 50px;
 border-radius: 10px;
 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 text-align: center;
+width: 500px
 `
 
-export const Input = styled.input`
+export const InputInform = styled.input`
 width: 100%;
 padding: 10px 15px;
 margin: 10px 0;

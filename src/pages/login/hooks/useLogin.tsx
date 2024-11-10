@@ -17,7 +17,7 @@ export const useLogin = ({ email, password }: Props) => {
         try {
             const response = await loginFromService({ email, password });
             const statusCode = response.status;
-
+console.log('status code', statusCode)
             if (statusCode === 200) {
                 const parsedResponse = await response.json();
                 console.log(parsedResponse);
@@ -37,9 +37,6 @@ export const useLogin = ({ email, password }: Props) => {
         }
     }, [setUser]);
 
-    useEffect(() => {
-        login({ email, password });
-    }, [login, email, password]);
 
     return { status, errorToShow, login };
 };

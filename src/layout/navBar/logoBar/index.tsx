@@ -16,6 +16,7 @@ import theme from '../../../theme';
 import { useNavigate } from 'react-router-dom';
 import LogoEpi from '../../../assets/logoEpi.png'
 import { celeste, salmon } from '../../../utils/colors';
+import { useLoginContext } from '../../../contexts/contextHooks/useLoginContext';
 
 const pages = [{
   name: 'Gráficos',
@@ -30,6 +31,8 @@ const settings = ['Perfil','Cerrar sesión'];
 function LogoBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
+  const {user} = useLoginContext()
 
   const navigate = useNavigate()
 
@@ -140,7 +143,7 @@ function LogoBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Perfil">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Vemy Sharp" src="/static/images/avatar/2.jpg" sx={{color:'white', backgroundColor: salmon}} />
+                <Avatar alt={user?.first_name} src="/static/images/avatar/2.jpg" sx={{color:'white', backgroundColor: salmon}} />
               </IconButton>
             </Tooltip>
             <Menu
