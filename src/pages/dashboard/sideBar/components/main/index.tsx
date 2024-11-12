@@ -19,6 +19,8 @@ import {
   verde,
   verdeTransparente,
 } from "../../../../../utils/colors";
+import { caps } from "../data";
+import { getHealthCenterNameFromId } from "../../../../../utils/functions";
 
 const drawerWidth = 240;
 
@@ -76,7 +78,7 @@ export default function MainContent({ open, setOpen }: Props) {
     const filter: any = fakeInitialData.filter(
       (el) =>
         el.year === year &&
-        el.healthCenter === healthCenter.name &&
+        el.healthCenterId === healthCenter.id &&
         months.includes(el.month)
     );
     setInitialDataFilteredByYearMonthsAndHeathCenter(filter);
@@ -111,10 +113,13 @@ export default function MainContent({ open, setOpen }: Props) {
             };
           });
 
+
+          
+
           return (
             <BasicChart
               key={index}
-              title={`${el.healthCenter} - ${el.month} ${el.year}`} // Ajustar el título dinámicamente
+              title={`${getHealthCenterNameFromId(el.healthCenterId)} - ${el.month} ${el.year}`} // Ajustar el título dinámicamente
               barLabels={[
                 "0-1",
                 "1-4",

@@ -1,6 +1,6 @@
 export const fakeInitialData = [
     {
-      healthCenter:'Almafuerte',
+      healthCenterId:2,
       year:2024,
       month: 'Enero',
       data: {
@@ -14,7 +14,7 @@ export const fakeInitialData = [
     
     },
     {
-        healthCenter:'Almafuerte',
+        healthCenterId:2,
         year:2024,
         month: 'Febrero',
         data: {
@@ -28,7 +28,7 @@ export const fakeInitialData = [
       
       },
       {
-        healthCenter:'Azucena',
+        healthCenterId:1,
         year:2024,
         month: 'January',
         data: {

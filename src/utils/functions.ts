@@ -1,3 +1,5 @@
+import { caps } from "../pages/dashboard/sideBar/components/data";
+
 export const getCurrentYear = new Date().getFullYear()
 
 
@@ -18,4 +20,9 @@ export function getCurrentMonthName(): string {
       case 12: return 'Diciembre';
       default: return 'Enero';
     }
+  }
+
+  export function getHealthCenterNameFromId(healthCenterId: number): string {            
+    const capsName = caps.find(el => el.id === healthCenterId)?.name;
+    return capsName || "";
   }

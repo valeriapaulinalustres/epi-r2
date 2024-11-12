@@ -27,6 +27,7 @@ export default function UploadSelect ({label, state, setState, options}:Props) {
         value={state}
         label={label}
         onChange={handleChange}
+        sx={{width: '300px'}}
       >
         {label === "Centro de Salud"
          ? ( options.map((el:any, index:any)=>{

@@ -13,7 +13,7 @@ export default function Upload() {
 
   const [month, setMonth] = useState<string>(currentMonth);
   const [year, setYear] = useState<number>(currentYear);
-  //const { healthCenter, setHealthCenter } = useState<Caps>({});
+  const [ healthCenterId, setHealthCenterId ] = useState<number | undefined>(undefined);
 
   return (
     <PageContainer>
@@ -32,8 +32,8 @@ export default function Upload() {
       />
       <UploadSelect
         label="Centro de Salud"
-        state={month}
-        setState={setMonth}
+        state={healthCenterId}
+        setState={setHealthCenterId}
         options={caps}
       />
     </PageContainer>
