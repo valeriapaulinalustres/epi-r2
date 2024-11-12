@@ -1,7 +1,5 @@
-interface Caps {
-    id: number;
-    name: string
-  }
+import { Caps } from "../../../../utils/interfaces";
+
   
  export const caps: Caps[] = [
     {

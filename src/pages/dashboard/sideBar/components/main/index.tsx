@@ -76,7 +76,7 @@ export default function MainContent({ open, setOpen }: Props) {
     const filter: any = fakeInitialData.filter(
       (el) =>
         el.year === year &&
-        el.healthCenter === healthCenter &&
+        el.healthCenter === healthCenter.name &&
         months.includes(el.month)
     );
     setInitialDataFilteredByYearMonthsAndHeathCenter(filter);

@@ -81,7 +81,7 @@ export default function Header({ open, setOpen }: Props) {
           component="div"
           sx={{ color: "#FF7999" }}
         >
-          {healthCenter}
+          {healthCenter.name}
         </Typography>
       </Toolbar>
     </AppBar>

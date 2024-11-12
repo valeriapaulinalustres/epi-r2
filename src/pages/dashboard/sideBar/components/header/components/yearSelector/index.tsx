@@ -20,7 +20,7 @@ export default function YearSelector() {
         labelId="demo-select-small-label"
         id="demo-select-small"
         value={year.toString()}
-        label="Age"
+        label="Año"
         onChange={handleChange}
       >
         {yearsList.map((el, index) => {

@@ -13,6 +13,7 @@ import ListItemText from "@mui/material/ListItemText";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import { caps } from "./data";
 import { useMainContext } from "../../../../contexts/contextHooks/useMainContext";
+import { Caps } from "../../../../utils/interfaces";
 
 const drawerWidth = 240;
 
@@ -39,8 +40,8 @@ export default function SideMenu({ open, setOpen }: Props) {
     setOpen(false);
   };
 
-  function handleChooseHealthCenter(name: string) {
-    setHealthCenter(name);
+  function handleChooseHealthCenter(capsObj: Caps) {
+    setHealthCenter(capsObj);
   }
 
   return (
@@ -77,7 +78,7 @@ export default function SideMenu({ open, setOpen }: Props) {
             key={index}
             disablePadding
             dense
-            onClick={() => handleChooseHealthCenter(el.name)}
+            onClick={() => handleChooseHealthCenter(el)}
           >
             <ListItemButton dense>
               <ListItemIcon>
@@ -95,7 +96,7 @@ export default function SideMenu({ open, setOpen }: Props) {
             key={index}
             disablePadding
             dense
-            onClick={() => handleChooseHealthCenter(el.name)}
+            onClick={() => handleChooseHealthCenter(el)}
           >
             <ListItemButton dense>
               <ListItemIcon>
