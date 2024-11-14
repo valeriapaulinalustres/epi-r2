@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
 import UploadSelect from "./components/UploadSelect";
-import { PageContainer } from "./styles";
+import { PageContainer, SelectorsContainer } from "./styles";
 import { getCurrentMonthName, getCurrentYear } from "../../utils/functions";
 import { yearsList } from "../dashboard/sideBar/components/header/components/yearSelector/data";
 import { monthList } from "../dashboard/sideBar/components/header/components/monthSelector/data";
 import { caps } from "../dashboard/sideBar/components/data";
+import UploadTable from "./components/UploadTable";
 
 export default function Upload() {
   const currentYear = useMemo(() => getCurrentYear, []);
@@ -18,6 +19,7 @@ export default function Upload() {
   return (
     <PageContainer>
       <h1>Ingreso de datos de la planilla mensual</h1>
+      <SelectorsContainer>
       <UploadSelect
         label="Año"
         state={year}
@@ -36,6 +38,8 @@ export default function Upload() {
         setState={setHealthCenterId}
         options={caps}
       />
+      </SelectorsContainer>   
+      <UploadTable />
     </PageContainer>
   );
 }
