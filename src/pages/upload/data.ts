@@ -33,3 +33,5 @@ export const services: string[] = [
     "Salud Pública"
 
 ]
+
+export const ageGroups: string[] = ['< 1', '1 a 4', '5 a 9', '10 a 14', '15 a 19', '20 a 34', '35 a 49', '50 a 64', '> 65']
