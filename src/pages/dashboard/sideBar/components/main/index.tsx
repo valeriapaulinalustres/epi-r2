@@ -21,6 +21,8 @@ import {
 } from "../../../../../utils/colors";
 import { caps } from "../data";
 import { getHealthCenterNameFromId } from "../../../../../utils/functions";
+import { useGetData } from "../../../../upload/hooks/useGetData";
+import { useGetDataFilteredByYearMonthsHealthcenterId } from "../../../../upload/hooks/useGetDataFilteredByYearMonthsHealthcenterId";
 
 const drawerWidth = 240;
 
@@ -74,17 +76,28 @@ export default function MainContent({ open, setOpen }: Props) {
 
   const { year, months, healthCenter } = useMainContext();
 
-  useEffect(() => {
-    const filter: any = fakeInitialData.filter(
-      (el) =>
-        el.year === year &&
-        el.healthCenterId === healthCenter.id &&
-        months.includes(el.month)
-    );
-    setInitialDataFilteredByYearMonthsAndHeathCenter(filter);
+  const {status, errorToShow, getDataFilteredByYearMonthsHealthcenterId, dataFilteredByYearMonthsHealthcenterId} = useGetDataFilteredByYearMonthsHealthcenterId()
 
-    console.log("initial", initialDataFilteredByYearMonthsAndHeathCenter);
-  }, [year, months, healthCenter]);
+useEffect(()=>{
+  getDataFilteredByYearMonthsHealthcenterId({
+    year, months, healthCenterId: healthCenter.id
+  })
+},[year, months, healthCenter, getDataFilteredByYearMonthsHealthcenterId])
+
+  // useEffect(() => {
+
+
+  //     const filter: any = fakeInitialData.filter(
+  //       (el) =>
+  //         el.year === year &&
+  //         el.healthCenterId === healthCenter.id &&
+  //         months.includes(el.month)
+  //     );
+  //     setInitialDataFilteredByYearMonthsAndHeathCenter(filter);
+  
+  //     console.log("initial", initialDataFilteredByYearMonthsAndHeathCenter);
+    
+  // }, []);
 
   return (
     <Main
@@ -100,7 +113,7 @@ export default function MainContent({ open, setOpen }: Props) {
     >
       <DrawerHeader theme={theme} />
 
-      {initialDataFilteredByYearMonthsAndHeathCenter.map(
+      {dataFilteredByYearMonthsHealthcenterId?.map(
         (el: any, index: number) => {
           const healthData = el.data;
 

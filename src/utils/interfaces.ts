@@ -10,3 +10,9 @@ export interface Caps {
     month: string;
     data: any[]
   }
+
+  export interface BodyGetDataFilteredYearMonthsHealthcenterId {
+    year: number;
+    healthCenterId: number;
+    months: string[]
+  }
