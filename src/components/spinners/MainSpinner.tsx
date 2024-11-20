@@ -1,35 +1,26 @@
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
-
-interface Props {
-  preview:any
-}
-
+import { rosa } from "../../utils/colors";
 
 const MainSpinner = () => {
-
-    const [color, setColor] = useState<string>('#ffffff');
 
     const override = {
       display: 'block',
       margin: '0 auto',
     };
 
-
   return (
-    <>
-    {/* {preview} */}
     <div>
       <ClipLoader
-        color={color}
+        color={rosa}
         cssOverride={override}
         // size={30}
         // width={300}
         aria-label="Loading Spinner"
         data-testid="loader"
+        loading={true}
       />
-    </div>
-    </>
+    </div>  
   );
 }
 

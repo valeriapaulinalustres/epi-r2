@@ -17,15 +17,9 @@ import { useNavigate } from 'react-router-dom';
 import LogoEpi from '../../../assets/logoEpi.png'
 import { celeste, salmon } from '../../../utils/colors';
 import { useLoginContext } from '../../../contexts/contextHooks/useLoginContext';
+import { pages } from '../data';
 
-const pages = [{
-  name: 'Gráficos',
-  url: '/dashboard'
-},
-{
-  name: 'Cargar',
-  url: '/upload'
-}];
+
 const settings = ['Perfil','Cerrar sesión'];
 
 function LogoBar() {

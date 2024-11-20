@@ -23,6 +23,7 @@ import { caps } from "../data";
 import { getHealthCenterNameFromId } from "../../../../../utils/functions";
 import { useGetData } from "../../../../upload/hooks/useGetData";
 import { useGetDataFilteredByYearMonthsHealthcenterId } from "../../../../upload/hooks/useGetDataFilteredByYearMonthsHealthcenterId";
+import MainSpinner from "../../../../../components/spinners/MainSpinner";
 
 const drawerWidth = 240;
 
@@ -84,20 +85,11 @@ useEffect(()=>{
   })
 },[year, months, healthCenter, getDataFilteredByYearMonthsHealthcenterId])
 
-  // useEffect(() => {
-
-
-  //     const filter: any = fakeInitialData.filter(
-  //       (el) =>
-  //         el.year === year &&
-  //         el.healthCenterId === healthCenter.id &&
-  //         months.includes(el.month)
-  //     );
-  //     setInitialDataFilteredByYearMonthsAndHeathCenter(filter);
-  
-  //     console.log("initial", initialDataFilteredByYearMonthsAndHeathCenter);
-    
-  // }, []);
+if (status === 'FAILED') {
+  return (
+    <div>{errorToShow.msg}</div> //crear un alert componente
+  )
+}
 
   return (
     <Main
@@ -112,43 +104,48 @@ useEffect(()=>{
       }}
     >
       <DrawerHeader theme={theme} />
+{
+  status === 'LOADING'
+  ? <MainSpinner />
+  : dataFilteredByYearMonthsHealthcenterId?.map(
+    (el: any, index: number) => {
+      const healthData = el.data;
 
-      {dataFilteredByYearMonthsHealthcenterId?.map(
-        (el: any, index: number) => {
-          const healthData = el.data;
+      const datasets = Object.keys(healthData).map((key, index2) => {
+        return {
+          label: key.charAt(0).toUpperCase() + key.slice(1),
+          data: healthData[key],
+          borderColor: colors[index2],
+          backgroundColor: colorsWithOpacity[index2],
+        };
+      });
 
-          const datasets = Object.keys(healthData).map((key, index2) => {
-            return {
-              label: key.charAt(0).toUpperCase() + key.slice(1),
-              data: healthData[key],
-              borderColor: colors[index2],
-              backgroundColor: colorsWithOpacity[index2],
-            };
-          });
-
-
-          
-
-          return (
-            <BasicChart
-              key={index}
-              title={`${getHealthCenterNameFromId(el.healthCenterId)} - ${el.month} ${el.year}`} // Ajustar el título dinámicamente
-              barLabels={[
-                "0-1",
-                "1-4",
-                "5-9",
-                "10-14",
-                "15-19",
-                "20-34",
-                "35-49",
-                "50-65",
-                "más de 65",
-              ]}
-              datasets={datasets} // Pasar los datasets generados dinámicamente
-            />
-          );
-        }
-      )}
+      return (
+        <BasicChart
+          key={index}
+          title={`${getHealthCenterNameFromId(el.healthCenterId)} - ${el.month} ${el.year}`} // Ajustar el título dinámicamente
+          barLabels={[
+            "0-1",
+            "1-4",
+            "5-9",
+            "10-14",
+            "15-19",
+            "20-34",
+            "35-49",
+            "50-65",
+            "más de 65",
+          ]}
+          datasets={datasets} // Pasar los datasets generados dinámicamente
+        />
+      );
+    }
+  )
+  }    
+  {
+    dataFilteredByYearMonthsHealthcenterId?.length === 0 
+    &&
+    <div>No hay datos de este mes, año y centro de salud en la base de datos</div> //crear el div
+  }
     </Main>
   );
 }
