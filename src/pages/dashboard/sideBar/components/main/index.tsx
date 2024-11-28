@@ -24,6 +24,7 @@ import { getHealthCenterNameFromId } from "../../../../../utils/functions";
 import { useGetData } from "../../../../upload/hooks/useGetData";
 import { useGetDataFilteredByYearMonthsHealthcenterId } from "../../../../upload/hooks/useGetDataFilteredByYearMonthsHealthcenterId";
 import MainSpinner from "../../../../../components/spinners/MainSpinner";
+import { ageGroups } from "../../../../upload/data";
 
 const drawerWidth = 240;
 
@@ -58,10 +59,7 @@ const Main = styled("main")<{ open?: boolean }>(({ theme, open }) => ({
 }));
 
 export default function MainContent({ open, setOpen }: Props) {
-  const [
-    initialDataFilteredByYearMonthsAndHeathCenter,
-    setInitialDataFilteredByYearMonthsAndHeathCenter,
-  ] = useState([]);
+
 
   const theme = useTheme();
 
@@ -87,7 +85,7 @@ useEffect(()=>{
 
 if (status === 'FAILED') {
   return (
-    <div>{errorToShow.msg}</div> //crear un alert componente
+    <div>{errorToShow.msg}</div> 
   )
 }
 
@@ -124,17 +122,7 @@ if (status === 'FAILED') {
         <BasicChart
           key={index}
           title={`${getHealthCenterNameFromId(el.healthCenterId)} - ${el.month} ${el.year}`} // Ajustar el título dinámicamente
-          barLabels={[
-            "0-1",
-            "1-4",
-            "5-9",
-            "10-14",
-            "15-19",
-            "20-34",
-            "35-49",
-            "50-65",
-            "más de 65",
-          ]}
+          barLabels={ageGroups}
           datasets={datasets} // Pasar los datasets generados dinámicamente
         />
       );
@@ -144,7 +132,7 @@ if (status === 'FAILED') {
   {
     dataFilteredByYearMonthsHealthcenterId?.length === 0 
     &&
-    <div>No hay datos de este mes, año y centro de salud en la base de datos</div> //crear el div
+    <div>No hay datos de este mes, año y centro de salud en la base de datos</div> 
   }
     </Main>
   );

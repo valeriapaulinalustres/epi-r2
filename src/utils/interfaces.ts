@@ -16,3 +16,13 @@ export interface Caps {
     healthCenterId: number;
     months: string[]
   }
+
+ export interface User {
+  id: string;
+  first_name: string;
+  last_name: string;
+  profession: string;
+  job: string;
+  email: string;
+  permission: string;
+ }

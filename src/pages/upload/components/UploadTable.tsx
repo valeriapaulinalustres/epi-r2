@@ -170,8 +170,8 @@ console.log('rows', rows)
       </Button>
       <Button
         onClick={()=>handleSubmit(rows)}
-        variant="contained"
-        style={{ margin: "10px", backgroundColor: celeste }}
+        variant="outlined"
+        style={{ margin: "10px", backgroundColor: '#ffffff', color: celeste, borderColor: celeste }}
       >
        Guardar
       </Button>
