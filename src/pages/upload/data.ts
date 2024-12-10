@@ -1,5 +1,6 @@
 export const services: string[] = [
     "Audiometría",
+    "Cardiología",
     "Clínica Médica",
     "Demanda Espontánea",
     "Dermatología",
