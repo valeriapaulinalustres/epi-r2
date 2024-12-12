@@ -50,6 +50,8 @@ function BasicChart({
   datasets
 }:any) {
 
+
+
   const data = {
     labels: barLabels,
     datasets: datasets.map((dataset: any) => ({
@@ -59,6 +61,10 @@ function BasicChart({
       backgroundColor: dataset.backgroundColor,
     })),
   };
+
+  const allData = datasets.flatMap((d: any) => d.data).filter((value: any) => 
+    typeof value === 'number' && !isNaN(value) && isFinite(value)
+  );
   
   const options:ChartOptions<'bar'>= {
     indexAxis: 'x' ,  
@@ -89,8 +95,19 @@ function BasicChart({
         },
       },
     },
+    scales: {
+      y: {
+        type: 'linear', // Asegura que el eje X sea continuo
+        beginAtZero: true, // Comienza en 0 si es necesario
+        min: Math.min(...allData),
+        max: Math.max(...allData) + 10,
+      },
+    },
 }
 
+console.log(datasets.flatMap((d: any) => d.data));
+console.log('options', options);
+console.log('data', data);
   const labels = barLabels;
 
   // const data = {
@@ -142,8 +159,8 @@ function BasicChart({
   }, []);
 
   return (
-    <div className='chart-container' style={{width:'900px', margin:'10px'}}>
-      <Bar options={options} data={data} ref={refChartFiveData} />
+    <div className='chart-container' style={{width:'1000px', margin:'10px'}}>
+      <Bar options={options} data={data} ref={refChartFiveData} key={JSON.stringify(data)} />
       <button
         type='button'
         onClick={downloadImageBarChartFive}

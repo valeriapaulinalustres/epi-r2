@@ -10,6 +10,7 @@ import {
   amarilloTransparente,
   celeste,
   celesteTransparente,
+  generateRandomRGBA,
   lila,
   lilaTransparente,
   rosa,
@@ -110,14 +111,15 @@ if (status === 'FAILED') {
       const healthData = el.data;
 
       const datasets = Object.keys(healthData).map((key, index2) => {
+        //console.log('***',healthData[key].splice(18))
         return {
           label: key.charAt(0).toUpperCase() + key.slice(1),
-          data: healthData[key],
-          borderColor: colors[index2],
-          backgroundColor: colorsWithOpacity[index2],
+          data: healthData[key].slice(0,-4),
+          borderColor: generateRandomRGBA(), // colors[index2],
+          backgroundColor: generateRandomRGBA(),// colorsWithOpacity[index2],
         };
       });
-
+console.log('datasets', datasets)
       return (
         <BasicChart
           key={index}
