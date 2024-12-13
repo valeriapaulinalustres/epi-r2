@@ -14,7 +14,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { InputsForTable, StyledTableCell, StyledTableRow } from '../styles';
-import { ageGroups, services } from '../data';
+import { ageGroupsForUpload, services } from '../data';
 
 
 export default function UploadTable({handleSubmit}: any) {
@@ -85,7 +85,7 @@ console.log('rows', rows)
             <StyledTableCell rowSpan={3}>Eliminar</StyledTableCell>
           </TableRow>
           <TableRow>
-            {ageGroups.map((label) => (
+            {ageGroupsForUpload.map((label) => (
               <StyledTableCell key={label} align="center" colSpan={2}>
                 {label}
               </StyledTableCell>

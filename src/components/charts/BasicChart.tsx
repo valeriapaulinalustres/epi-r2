@@ -57,7 +57,7 @@ function BasicChart({
     datasets: datasets.map((dataset: any) => ({
       label: dataset.label,
       data: dataset.data,
-      borderColor: dataset.borderColor,
+      borderColor: dataset.backgroundColor,
       backgroundColor: dataset.backgroundColor,
     })),
   };

@@ -17,7 +17,7 @@ export function generateRandomRGBA() {
     const r = Math.floor(Math.random() * 256); // Rojo (0-255)
     const g = Math.floor(Math.random() * 256); // Verde (0-255)
     const b = Math.floor(Math.random() * 256); // Azul (0-255)
-    const a = 1 //Math.random().toFixed(2); // Alpha (0-1, dos decimales)
+    const a = 1 //Math.random().toFixed(1); // Alpha (0-1, dos decimales)
 
     return `rgba(${r}, ${g}, ${b}, ${a})`;
 }
