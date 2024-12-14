@@ -91,9 +91,9 @@ console.log('rows', rows)
                   <Button                   
                     variant="outlined"
                     color="secondary"
+                    onClick={()=>{handleEdit(el)}}
                   >
                     <CreateOutlinedIcon 
-                    onClick={()=>{handleEdit(el)}}
                     />
                   </Button>
                   <Button           
@@ -111,7 +111,7 @@ console.log('rows', rows)
         </TableBody>
       </Table>
       <Button
-        onClick={()=>{setAddEditUserModal(true)}}
+        onClick={()=>{setAddEditUserModal(true); setUserToEdit({})}}
         variant="contained"
         style={{ margin: "10px", backgroundColor: verde }}
       >

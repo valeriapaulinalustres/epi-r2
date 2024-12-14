@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { PageContainer } from "../upload/styles";
 import UsersTable from "./components/UsersTable";
-import ModalLayout from "../../components/modalLayout/ModalLayout";
 import { User } from "../../utils/interfaces";
+import AddEditUser from "./addEditUser/AddEditUser";
 
 export default function Users() {
   const [addEditUserModal, setAddEditUserModal] = useState<boolean>(false);
   const [edition, setEdition] = useState<boolean>(false);
   const [userToEdit, setUserToEdit] = useState<User | null>(null);
 
-  function handleSave() {}
+ 
 
   function handleDeleteUser(id: string) {}
 
@@ -24,13 +24,14 @@ export default function Users() {
         setUserToEdit={setUserToEdit}
       />
       {addEditUserModal && (
-        <ModalLayout
-          open={addEditUserModal}
-          setOpen={setAddEditUserModal}
-          title={edition ? "Editar usuario" : "Crear usuario"}
-          setEdition={setEdition}
-          handleSave={handleSave}
-        />
+      <AddEditUser 
+      addEditUserModal={addEditUserModal}
+      setAddEditUserModal={setAddEditUserModal}
+      edition={edition}
+      setEdition={setEdition}
+      userToEdit={userToEdit}
+      setUserToEdit={setUserToEdit}
+      />
       )}
     </PageContainer>
   );
