@@ -131,8 +131,9 @@ setAddEditUserModal(false)
               setUserDataFromForm(userDataFromFormCopy);
             }}
           >
-            <FormControlLabel value="admin" control={<Radio size="small" color="warning" />} label="admin" />
-            <FormControlLabel value="client" control={<Radio size="small" color="warning"/>} label="client" />
+            <FormControlLabel value="client" control={<Radio size="small" color="warning" />} label="admin" />
+            <FormControlLabel value="admin" control={<Radio size="small" color="warning"/>} label="client" />
+            <FormControlLabel value="superAdmin" control={<Radio size="small" color="warning"/>} label="client" />
           </RadioGroup>
         </FormControl>
 

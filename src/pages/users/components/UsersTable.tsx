@@ -74,7 +74,7 @@ console.log('users', users)
                   {el.email}
                   </StyledTableCell>     
                   <StyledTableCell align="center">
-                  {el.isAdmin}
+                  {el.permission}
                   </StyledTableCell>   
                 <StyledTableCell align="center">
                    <FlexRow>
