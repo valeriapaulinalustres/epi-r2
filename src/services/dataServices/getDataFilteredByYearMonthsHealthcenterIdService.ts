@@ -1,5 +1,5 @@
-import { URI } from "../../../utils/endpoints";
-import { BodyGetDataFilteredYearMonthsHealthcenterId } from "../../../utils/interfaces";
+import { URI } from "../../utils/endpoints";
+import { BodyGetDataFilteredYearMonthsHealthcenterId } from "../../utils/interfaces";
 
 export const getDataFilteredByYearMonthsHealthcenterIdService = async (body: BodyGetDataFilteredYearMonthsHealthcenterId) => {
   const url = `${URI}/api/data/get-data-filtered-year-month-healthcenter`;

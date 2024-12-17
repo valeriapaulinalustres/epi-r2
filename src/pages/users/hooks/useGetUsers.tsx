@@ -1,36 +1,39 @@
 import { useCallback, useState } from "react";
-import { Data } from "../../../utils/interfaces";
-import { saveDataService } from "../../../services/dataServices/saveDataService";
+import { getUsersService } from "../../../services/usersServices/getUsersService";
 
-export const useSaveData = () => {
+
+
+export const useGetUsers = () => {
   const [status, setStatus] = useState<string>("LOADING");
   const [errorToShow, setErrorToShow] = useState<{ title?: string; msg?: any }>(
     {}
   );
+  const [users, setUsers] = useState<any>()
 
-  const saveData = useCallback(async (body: Data) => {
+  const getUsers = useCallback(async () => {
     try {
-      const response = await saveDataService(body);
+      const response = await getUsersService();
       const statusCode = response.status;
       console.log("status code", statusCode);
       if (statusCode === 200) {
         const parsedResponse = await response.json();
         console.log(parsedResponse);
-        setStatus("SUCCESS");     
+        setStatus("SUCCESS");  
+        setUsers(parsedResponse)   
       } else {
         setStatus("ERROR");
         setErrorToShow({
-          title: "Save Data Failed",
+          title: "Get Users Failed",
           msg: `Error ${statusCode}: ${response.statusText}`,
         });
       }
     } catch (error) {
       console.log("error", error);
       setStatus("ERROR");
-      setErrorToShow({ title: "Save Data Failed", msg: error });
+      setErrorToShow({ title: "Get Users Failed", msg: error });
     
     }
   }, []);
 
-  return { status, errorToShow, saveData };
+  return { status, errorToShow, getUsers, users };
 };

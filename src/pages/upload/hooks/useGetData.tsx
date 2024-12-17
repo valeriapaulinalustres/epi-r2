@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { Data } from "../../../utils/interfaces";
-import { getDataService } from "../../../services/login/dataServices/getDataService";
+import { getDataService } from "../../../services/dataServices/getDataService";
 
 
 export const useGetData = () => {

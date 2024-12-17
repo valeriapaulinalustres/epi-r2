@@ -1,5 +1,5 @@
-import { URI } from "../../../utils/endpoints";
-import { Data } from "../../../utils/interfaces";
+import { URI } from "../../utils/endpoints";
+import { Data } from "../../utils/interfaces";
 
 export const getDataService = async () => {
   const url = `${URI}/api/data/`;

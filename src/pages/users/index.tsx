@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PageContainer } from "../upload/styles";
 import UsersTable from "./components/UsersTable";
 import { User } from "../../utils/interfaces";
 import AddEditUser from "./addEditUser/AddEditUser";
+import { useGetUsers } from "./hooks/useGetUsers";
+import MainSpinner from "../../components/spinners/MainSpinner";
 
 export default function Users() {
   const [addEditUserModal, setAddEditUserModal] = useState<boolean>(false);
@@ -13,7 +15,25 @@ export default function Users() {
 
   function handleDeleteUser(id: string) {}
 
+  const {getUsers, status, errorToShow, users} = useGetUsers()
+
+
+  useEffect(()=>{
+getUsers()
+  },[])
+
+  if (status === 'FAILED') {
+    return (
+      <div>{errorToShow.msg}</div> 
+    )
+  }
+
   return (
+    <>
+     {
+      status === 'LOADING'
+      ? <MainSpinner />
+      :
     <PageContainer>
       <h1>Gestión de Usuarios</h1>
       <UsersTable
@@ -22,6 +42,7 @@ export default function Users() {
         setAddEditUserModal={setAddEditUserModal}
         handleDeleteUser={handleDeleteUser}
         setUserToEdit={setUserToEdit}
+        users={users}
       />
       {addEditUserModal && (
       <AddEditUser 
@@ -34,5 +55,8 @@ export default function Users() {
       />
       )}
     </PageContainer>
+    }
+    </>
+   
   );
 }

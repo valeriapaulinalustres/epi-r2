@@ -1,8 +1,9 @@
-import { URI } from "../../../utils/endpoints";
-import { Data } from "../../../utils/interfaces";
+import { URI } from "../../utils/endpoints";
+import { User } from "../../utils/interfaces";
 
-export const saveDataService = async (body: Data) => {
-  const url = `${URI}/api/data/save-data`;
+
+export const postNewUserService = async (body: User) => {
+  const url = `${URI}/api/users/register`;
   console.log("del service", body);
   const response = await fetch(url, {
     method: "POST",

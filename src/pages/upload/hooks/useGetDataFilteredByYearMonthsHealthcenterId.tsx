@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { BodyGetDataFilteredYearMonthsHealthcenterId, Data } from "../../../utils/interfaces";
-import { getDataFilteredByYearMonthsHealthcenterIdService } from "../../../services/login/dataServices/getDataFilteredByYearMonthsHealthcenterIdService";
+import { getDataFilteredByYearMonthsHealthcenterIdService } from "../../../services/dataServices/getDataFilteredByYearMonthsHealthcenterIdService";
 
 export const useGetDataFilteredByYearMonthsHealthcenterId = () => {
   const [status, setStatus] = useState<string>("LOADING");

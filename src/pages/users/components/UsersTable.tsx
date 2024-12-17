@@ -25,21 +25,12 @@ interface Props {
   handleDeleteUser: any;
   setEdition: any;
   setUserToEdit: any;
+  users: any
 }
 
 
-export default function UsersTable ({ addEditUserModal, setAddEditUserModal, handleDeleteUser, setEdition, setUserToEdit}: Props) {
-  const [rows, setRows] = React.useState<User[]>([
-    {
-      id: '123',
-        first_name: 'vale',
-        last_name: 'Lustres',
-        profession: 'médica',
-        job: 'Epidemio',
-        email: 'va@gmail.com',
-        permission: 'superAdmin'
-    }
-  ]);
+export default function UsersTable ({ addEditUserModal, setAddEditUserModal, handleDeleteUser, setEdition, setUserToEdit, users}: Props) {
+  //const [rows, setRows] = React.useState<User[]>([]);
 
   function handleEdit (el: User) {
     setAddEditUserModal(true); 
@@ -47,7 +38,7 @@ export default function UsersTable ({ addEditUserModal, setAddEditUserModal, han
     setUserToEdit(el)
   }
   
-console.log('rows', rows)
+console.log('users', users)
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 1300 }} aria-label="customized table">
@@ -64,7 +55,7 @@ console.log('rows', rows)
         </TableHead>
 
         <TableBody>
-          {rows.map((el, rowIndex) => {         
+          {users.map((el: any, rowIndex: number) => {         
             return (
               <StyledTableRow key={rowIndex}>              
                   <StyledTableCell  align="center">
@@ -83,7 +74,7 @@ console.log('rows', rows)
                   {el.email}
                   </StyledTableCell>     
                   <StyledTableCell align="center">
-                  {el.permission}
+                  {el.isAdmin}
                   </StyledTableCell>   
                 <StyledTableCell align="center">
                    <FlexRow>
