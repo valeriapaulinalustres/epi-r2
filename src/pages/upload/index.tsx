@@ -9,6 +9,7 @@ import UploadTable from "./components/UploadTable";
 import { useSaveData } from "./hooks/useSaveData";
 import AutohideSnackbar from "../../components/snackbars/AutohideSnackbar";
 import { rosa, verde } from "../../utils/colors";
+import { SnackbarType } from "../../utils/interfaces";
 
 interface Data {
   healthCenterId: number;
@@ -17,11 +18,6 @@ interface Data {
   data: any;
 }
 
-interface SnackbarType {
-  open: boolean;
-  message: string;
-  color: string;
-}
 
 export default function Upload() {
   const currentYear = useMemo(() => getCurrentYear, []);

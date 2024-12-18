@@ -1,8 +1,8 @@
 import { URI } from "../../utils/endpoints";
-import { User } from "../../utils/interfaces";
+import { User, UserWithoutId } from "../../utils/interfaces";
 
 
-export const postNewUserService = async (body: User) => {
+export const postNewUserService = async (body: UserWithoutId) => {
   const url = `${URI}/api/users/register`;
   console.log("del service", body);
   const response = await fetch(url, {

@@ -4,9 +4,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
-import { FlexColumn, FlexRow } from "../../generalStyles/styles";
+import { FlexColumn, FlexRow, FlexRowCenter } from "../../generalStyles/styles";
 import { celeste } from "../../utils/colors";
-
 
 const style = {
   position: "absolute",
@@ -52,22 +51,22 @@ export default function ModalLayout({
       >
         <Box sx={style}>
           <FlexColumn>
-          <FlexRow>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              {title}
-            </Typography>
-            <Button onClick={handleClose}>
-              <CloseIcon />
-            </Button>
-          </FlexRow>
-          <FlexColumn>{children}</FlexColumn>
-          <Button
-        onClick={()=>handleSave()}
-        variant="contained"
-        style={{ margin: "10px", backgroundColor: celeste }}
-      >
-       Guardar
-      </Button>
+            <FlexRow>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                {title}
+              </Typography>
+              <Button onClick={handleClose}>
+                <CloseIcon />
+              </Button>
+            </FlexRow>
+            <FlexColumn>{children}</FlexColumn>
+              <Button
+                onClick={() => handleSave()}
+                variant="contained"
+                style={{ margin: "10px", backgroundColor: celeste }}
+              >
+                Guardar
+              </Button>
           </FlexColumn>
         </Box>
       </Modal>

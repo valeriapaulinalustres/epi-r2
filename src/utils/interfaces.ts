@@ -24,5 +24,21 @@ export interface Caps {
   profession: string;
   job: string;
   email: string;
-  permission: string;
+  permission: 'client' | 'admin' | 'superAdmin';
  }
+
+ export interface UserWithoutId {
+  first_name: string;
+  last_name: string;
+  profession: string;
+  job: string;
+  email: string;
+  password: string;
+  permission: 'client' | 'admin' | 'superAdmin';
+ }
+
+ export interface SnackbarType {
+  open: boolean;
+  message: string;
+  color: string;
+}

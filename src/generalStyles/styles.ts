@@ -17,3 +17,12 @@ gap: 2;
 justify-content: center;
 align-items: center;
 `;
+
+export const FlexRowCenter = styled.div`
+display: flex,
+flex-direction: row,
+gap: 2px;
+justify-content: center;
+align-items: center;
+width: 100%;
+`;

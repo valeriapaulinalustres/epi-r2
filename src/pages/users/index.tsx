@@ -52,6 +52,7 @@ getUsers()
       setEdition={setEdition}
       userToEdit={userToEdit}
       setUserToEdit={setUserToEdit}
+      getUsers={getUsers}
       />
       )}
     </PageContainer>

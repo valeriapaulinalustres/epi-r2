@@ -18,6 +18,7 @@ import { User } from '../../../utils/interfaces';
 import { StyledTableCell, StyledTableRow } from '../../upload/styles';
 import { FlexRow } from '../../../generalStyles/styles';
 import { Elderly } from '@mui/icons-material';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 
 interface Props {
   addEditUserModal: boolean;
@@ -37,6 +38,8 @@ export default function UsersTable ({ addEditUserModal, setAddEditUserModal, han
     setEdition(true)
     setUserToEdit(el)
   }
+
+  function handleChangePassword (el: User ) {}
   
 console.log('users', users)
   return (
@@ -93,6 +96,14 @@ console.log('users', users)
                     color="secondary"
                   >
                     <DeleteOutlineIcon />
+                  </Button>
+                  <Button                   
+                    variant="outlined"
+                    color="secondary"
+                    onClick={()=>{handleChangePassword(el)}}
+                  >
+                    <LockOpenIcon 
+                    />
                   </Button>
                     </FlexRow> 
                 </StyledTableCell>
