@@ -13,7 +13,6 @@ export const usePostNewUser = () => {
     try {
       const response = await postNewUserService(body);
       const statusCode = response.status;
-      console.log("status code", statusCode);
       if (statusCode === 200) {
         const parsedResponse = await response.json();
         console.log(parsedResponse);
@@ -26,7 +25,6 @@ export const usePostNewUser = () => {
         });
       }
     } catch (error) {
-      console.log("error", error);
       setStatus("ERROR");
       setErrorToShow({ title: "Save User Failed", msg: error });
     

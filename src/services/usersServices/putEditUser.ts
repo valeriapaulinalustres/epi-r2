@@ -1,11 +1,11 @@
 import { URI } from "../../utils/endpoints";
-import { UserWithoutId } from "../../utils/interfaces";
+import { User } from "../../utils/interfaces";
 
 
-export const postNewUserService = async (body: UserWithoutId) => {
-  const url = `${URI}/api/users/register`;
+export const putEditUserService = async (body: User) => {
+  const url = `${URI}/api/users/edit-user/${body._id}`;
   const response = await fetch(url, {
-    method: "POST",
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });

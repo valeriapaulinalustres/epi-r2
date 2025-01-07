@@ -18,7 +18,7 @@ export interface Caps {
   }
 
  export interface User {
-  id: string;
+  _id: string;
   first_name: string;
   last_name: string;
   profession: string;
