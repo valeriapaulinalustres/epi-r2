@@ -11,10 +11,6 @@ export default function Users() {
   const [edition, setEdition] = useState<boolean>(false);
   const [userToEdit, setUserToEdit] = useState<User | null>(null);
 
- 
-
-  function handleDeleteUser(id: string) {}
-
   const {getUsers, status, errorToShow, users} = useGetUsers()
 
 
@@ -40,9 +36,9 @@ getUsers()
         setEdition={setEdition}
         addEditUserModal={addEditUserModal}
         setAddEditUserModal={setAddEditUserModal}
-        handleDeleteUser={handleDeleteUser}
         setUserToEdit={setUserToEdit}
         users={users}
+        getUsers={getUsers}
       />
       {addEditUserModal && (
       <AddEditUser 

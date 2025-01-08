@@ -1,6 +1,6 @@
 
 
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
@@ -14,24 +14,36 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 
-import { User } from '../../../utils/interfaces';
+import { SnackbarType, User } from '../../../utils/interfaces';
 import { StyledTableCell, StyledTableRow } from '../../upload/styles';
 import { FlexRow } from '../../../generalStyles/styles';
 import { Elderly } from '@mui/icons-material';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import { useDeleteUser } from '../hooks/useDeleteUser';
+import AutohideSnackbar from '../../../components/snackbars/AutohideSnackbar';
+import { useGetUsers } from '../hooks/useGetUsers';
 
 interface Props {
   addEditUserModal: boolean;
   setAddEditUserModal: any;
-  handleDeleteUser: any;
   setEdition: any;
   setUserToEdit: any;
   users: any
+  getUsers: any
 }
 
 
-export default function UsersTable ({ addEditUserModal, setAddEditUserModal, handleDeleteUser, setEdition, setUserToEdit, users}: Props) {
+export default function UsersTable ({ addEditUserModal, setAddEditUserModal, setEdition, setUserToEdit, users, getUsers}: Props) {
   //const [rows, setRows] = React.useState<User[]>([]);
+
+    const [openSnackbar, setOpenSnackbar] = useState<SnackbarType>({
+      open: false,
+      message: "",
+      color: "",
+    });
+
+   const {setStatus: setStatusOnDelete, status: statusOnDelete, errorToShow: errorToShowOnDelete, deleteUser} = useDeleteUser()
+  
 
   function handleEdit (el: User) {
     setAddEditUserModal(true); 
@@ -39,8 +51,30 @@ export default function UsersTable ({ addEditUserModal, setAddEditUserModal, han
     setUserToEdit(el)
   }
 
+  function handleDeleteUser(id: string) {
+    deleteUser(id)
+  }
+
+  useEffect(()=>{
+    if (statusOnDelete === "SUCCESS") {
+      setOpenSnackbar({
+        open: true,
+        message:"Ususario eliminado",
+        color: verde
+      })
+      getUsers()
+      setStatusOnDelete('LOADING')
+    } else if (statusOnDelete === "ERROR") {
+      setOpenSnackbar({
+        open: true,
+        message: "Error al eliminar usuario",
+        color: rosa
+      })
+    }
+  },[statusOnDelete])
+
   function handleChangePassword (el: User ) {}
-  
+  console.log('statusOnDelete', statusOnDelete)
 console.log('users', users)
   return (
     <TableContainer component={Paper}>
@@ -58,7 +92,7 @@ console.log('users', users)
         </TableHead>
 
         <TableBody>
-          {users.map((el: any, rowIndex: number) => {         
+          {users?.map((el: any, rowIndex: number) => {         
             return (
               <StyledTableRow key={rowIndex}>              
                   <StyledTableCell  align="center">
@@ -91,20 +125,20 @@ console.log('users', users)
                     />
                   </Button>
                   <Button           
-                  onClick={()=>handleDeleteUser(el.id)}       
+                  onClick={()=>handleDeleteUser(el._id)}       
                     variant="outlined"
                     color="secondary"
                   >
                     <DeleteOutlineIcon />
                   </Button>
-                  <Button                   
+                  {/* <Button                   
                     variant="outlined"
                     color="secondary"
                     onClick={()=>{handleChangePassword(el)}}
                   >
                     <LockOpenIcon 
-                    />
-                  </Button>
+                    /> 
+                  </Button> */}
                     </FlexRow> 
                 </StyledTableCell>
               </StyledTableRow>
@@ -119,7 +153,10 @@ console.log('users', users)
       >
         <AddIcon />
       </Button>
-  
+  <AutohideSnackbar
+            openSnackbar={openSnackbar}
+            setOpenSnackbar={setOpenSnackbar}
+          />
     </TableContainer>
   );
 }
