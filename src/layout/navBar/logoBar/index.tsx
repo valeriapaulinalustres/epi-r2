@@ -45,6 +45,21 @@ function LogoBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+console.log('user', user)
+
+function showPagesAccordingToPermissions (pages: {name: string, url:string, permissions: string[]}[]) {
+  const allowedPages = []
+  
+  for (let i = 0; i < pages.length; i++) {
+    if (user) {
+      if (pages[i].permissions.includes(user.permission)) {
+        allowedPages.push(pages[i])
+      }
+    }    
+  }
+  console.log('allowed', allowedPages)
+  return allowedPages
+}
 
   return (
     <AppBar position="static" sx={{backgroundColor:'#ff003c', position:'fixed'}}>
@@ -97,7 +112,7 @@ function LogoBar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
-              {pages.map((page) => (
+              {showPagesAccordingToPermissions(pages).map((page) => (
                 <MenuItem key={page.name} onClick={()=>handleCloseNavMenu(page.url)} >
                   <Typography sx={{ textAlign: 'center'}}>{page.name}</Typography>
                 </MenuItem>
@@ -124,7 +139,7 @@ function LogoBar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {showPagesAccordingToPermissions(pages).map((page) => (
               <Button
                 key={page.name}
                 onClick={()=>handleCloseNavMenu(page.url)}

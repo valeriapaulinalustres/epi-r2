@@ -10,7 +10,7 @@ interface User {
   email: string;
   profession: string;
   job: string;
-  is_admin: boolean;
+  permission: "client" | "admin" | "superAdmin";
 }
 
 interface LoginContextType {

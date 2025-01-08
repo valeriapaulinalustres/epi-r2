@@ -97,7 +97,7 @@ const Login = () => {
           onChange={handleEmailChange} 
           value={email} 
           placeholder="email"/>
-          <Example>va@gmail.com</Example>
+          {/* <Example>va@gmail.com</Example> */}
           <Error>{errorMail}</Error>
           <InputInform
             type="password"
@@ -105,7 +105,7 @@ const Login = () => {
             value={password}
             placeholder="password"
           />
-          <Example>1234</Example>
+          {/* <Example>1234</Example> */}
           <Error>{errorPassword}</Error>
           <Button buttonType="submit" title="Login" />
         </form>

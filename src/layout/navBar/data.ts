@@ -1,19 +1,23 @@
 interface Page {
     name: string;
-    url: string
+    url: string;
+    permissions: string[]
 }
 
 export const pages: Page[] = [
     {
     name: 'Gráficos',
-    url: '/dashboard'
+    url: '/dashboard',
+    permissions: ['client', 'admin', 'superAdmin']
   },
   {
     name: 'Cargar',
-    url: '/upload'
+    url: '/upload',
+    permissions: ['admin', 'superAdmin']
   },
   {
     name: 'Usuarios',
-    url: '/users'
+    url: '/users',
+    permissions: ['superAdmin']
   }
   ];
